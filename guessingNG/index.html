@@ -18,12 +18,22 @@
 <body>
     <div id="app">
         <div class="input_select">
-            <b-form-input v-model="inputVal" placeholder="搜尋關鍵字"></b-form-input>
+            <b-form-input v-model="message" placeholder="搜尋關鍵字"></b-form-input>
         </div>
+
+        <div V-show="show_val.length >= 1">
+            <div>搜尋結果：</div>
+            <div class="get_value" v-for="item in show_val">
+                <span>{{ item.name + '：' }}</span>
+                <span style="color: red;">{{ item.val }}</span>
+            </div>
+        </div>
+
         <hr class="hr_style">
+
         <div class="data_list">
-            <div class="this_list" v-for="(item,idx) in searchList" :key="idx">
-                <span>{{ item.name + '：'  }}</span>
+            <div class="this_list" v-for="item in dataList">
+                <span>{{ item.name + '：' }}</span>
                 <span style="color: red;">{{ item.val }}</span>
             </div>
         </div>
