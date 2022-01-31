@@ -8,21 +8,33 @@
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
     <style>
+        .input_select {
+            margin: 10px 5px;
+        }
         .this_list {
             margin: 5px;
+        }
+        .hr_style {
+            margin: 30px 0;
         }
     </style>
 </head>
 <body>
     <div id="app">
         <div class="input_select">
-            <b-form-input v-model="message" placeholder="Enter your name"></b-form-input>
+            <b-form-input v-model="message" placeholder="搜尋關鍵字"></b-form-input>
         </div>
-        <div class="get_value" v-for="item in show_val">
-            <span>{{ item.name + '：' }}</span>
-            <span style="color: red;">{{ item.val }}</span>
+
+        <div V-show="show_val.length >= 1">
+            <div>搜尋結果：</div>
+            <div class="get_value" v-for="item in show_val">
+                <span>{{ item.name + '：' }}</span>
+                <span style="color: red;">{{ item.val }}</span>
+            </div>
         </div>
-        <hr>
+
+        <hr class="hr_style">
+
         <div class="data_list">
             <div class="this_list" v-for="item in dataList">
                 <span>{{ item.name + '：' }}</span>
@@ -58,20 +70,24 @@
                     {name:"層云隱去月", val:"屑"},
                     {name:"有樣東西是個寶", val:"土"},
                     {name:"一家人住兩宅", val:"蔥"},
-                    {name:"小王肩並肩", val:"琴"},//
+                    {name:"小王肩並肩", val:"琴"},
                     {name:"黃金布", val:"香蕉"},
                     {name:"草原一場大火", val:"草莓"},
                     {name:"坐→坐", val:"青蛙"},
                     {name:"坐→立", val:"馬"},
                     {name:"坐→行", val:"魚"},
                     {name:"坐→臥", val:"蛇"},
-                    {name:"四方來合作", val:"器"},
-                    {name:"一星星", val:"螞蟻"},
-                    {name:"雨落在橫山", val:"雪"},
-                    {name:"層云隱去月", val:"屑"},
-                    {name:"有樣東西是個寶", val:"土"},
-                    {name:"一家人住兩宅", val:"蔥"},
-                    {name:"小王肩並肩", val:"琴"},
+                    {name:"妻有兒沒有", val:"女"},
+                    {name:"傘下沒有人", val:"蓮藕"},
+                    {name:"弟兄五六個", val:"大蒜"},
+                    {name:"嘴裡進蚊子", val:"張飛"},
+                    {name:"一只沒腳雞", val:"茶壺"},
+                    {name:"替爺爺趕馬", val:"孫策"},
+                    {name:"船板硬", val:"烏龜"},
+                    {name:"頭小頸長腳短", val:"烏龜"},
+                    {name:"黃包袱", val:"梨"},
+                    {name:"紫色樹開紫花", val:"茄子"},
+                    {name:"脫了紅袍子", val:"荔枝"}, //
                 ]
             },
             methods: {
@@ -79,7 +95,7 @@
             },
             watch: {
                 message (e) {
-                    // console.log(e.length);
+                    console.log(e);
                     // console.log(this.dataList);
                     this.show_val = [];
                     var getDatas = this.dataList;
