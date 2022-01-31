@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+    <style>
+        .this_list {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="input_select">
+            <b-form-input v-model="message" placeholder="Enter your name"></b-form-input>
+        </div>
+        <div class="get_value" v-for="item in show_val">
+            <span>{{ item.name + '：' }}</span>
+            <span style="color: red;">{{ item.val }}</span>
+        </div>
+        <hr>
+        <div class="data_list">
+            <div class="this_list" v-for="item in dataList">
+                <span>{{ item.name + '：' }}</span>
+                <span style="color: red;">{{ item.val }}</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Load polyfills to support older browsers -->
+    <script src="//polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver" crossorigin="anonymous"></script>
+    <!-- Load Vue followed by BootstrapVue -->
+    <script src="//unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+    <!-- Load the following for BootstrapVueIcons support -->
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: '',
+                show_val: [],
+                dataList: [
+                    {name:"昔日鳥兒", val:"喜鵲"},
+                    {name:"頭頂小紅帽", val:"公雞"},
+                    {name:"它家住在灣灣裡", val:"老鼠"},
+                    {name:"有面無口", val:"桌子"},
+                    {name:"遠看像頭牛", val:"午"},
+                    {name:"橫豎都是二", val:"井"},
+                    {name:"四方來合作", val:"器"},
+                    {name:"一星星", val:"螞蟻"},
+                    {name:"雨落在橫山", val:"雪"},
+                    {name:"層云隱去月", val:"屑"},
+                    {name:"有樣東西是個寶", val:"土"},
+                    {name:"一家人住兩宅", val:"蔥"},
+                    {name:"小王肩並肩", val:"琴"},//
+                    {name:"黃金布", val:"香蕉"},
+                    {name:"草原一場大火", val:"草莓"},
+                    {name:"坐→坐", val:"青蛙"},
+                    {name:"坐→立", val:"馬"},
+                    {name:"坐→行", val:"魚"},
+                    {name:"坐→臥", val:"蛇"},
+                    {name:"四方來合作", val:"器"},
+                    {name:"一星星", val:"螞蟻"},
+                    {name:"雨落在橫山", val:"雪"},
+                    {name:"層云隱去月", val:"屑"},
+                    {name:"有樣東西是個寶", val:"土"},
+                    {name:"一家人住兩宅", val:"蔥"},
+                    {name:"小王肩並肩", val:"琴"},
+                ]
+            },
+            methods: {
+
+            },
+            watch: {
+                message (e) {
+                    // console.log(e.length);
+                    // console.log(this.dataList);
+                    this.show_val = [];
+                    var getDatas = this.dataList;
+                    getDatas.forEach(getData => {
+                        getData.name.split('').forEach(oneText => {
+                            if (e.length === 1) {
+                                if (e == oneText) {
+                                    return this.show_val.push(getData);
+                                } else {
+                                    return;
+                                }
+                            } else {
+                                e.split('').forEach(selectText => {
+                                    if (oneText == selectText) {
+                                        return this.show_val.push(getData);
+                                    } else {
+                                        return;
+                                    }
+                                });
+                                
+                            } 
+                        });
+                    });
+                }
+            }
+        })
+    </script>
+</body>
+</html>
